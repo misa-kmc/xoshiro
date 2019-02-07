@@ -1,6 +1,6 @@
 
 set(TEST_SOURCE_FILES
-        random_test.cpp
+        oshinro_random_test.cpp
         )
 
 # set binary path and lib storage path wile compiling process.
