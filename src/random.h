@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <cstddef>
 
+// copied from https://github.com/atframework/atframe_utils/blob/master/include/random/random_xoshiro_core.h
 namespace util {
     namespace random {
         namespace core {

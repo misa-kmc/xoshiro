@@ -5,17 +5,17 @@
 #include <limits>
 #include <numeric>
 #include <ctime>
-
+#include "random.h"
 
 namespace util {
     namespace random {
         /**
          * 随机数包装类，用以提供高级功能
          */
-        template <typename CoreType>
+        template<typename CoreType>
         class random_manager_wrapper {
         public:
-            typedef CoreType                        core_type;
+            typedef CoreType core_type;
             typedef typename core_type::result_type result_type;
 
         private:
@@ -23,9 +23,11 @@ namespace util {
 
         public:
             random_manager_wrapper() {}
+
             random_manager_wrapper(result_type rd_seed) : core_(rd_seed) {}
 
-            inline core_type &      get_core() { return core_; }
+            inline core_type &get_core() { return core_; }
+
             inline const core_type &get_core() const { return core_; }
 
             /**
@@ -40,7 +42,7 @@ namespace util {
              * @param [in] first 随机数种子散列值起始位置
              * @param [in] last 随机数种子散列值结束位置
              */
-            template <typename It>
+            template<typename It>
             void init_seed(It &first, It last) {
                 core_.init_seed(first, last);
             }
@@ -64,7 +66,7 @@ namespace util {
              * @note 取值范围 [lowest, highest)
              * @return 产生的随机数
              */
-            template <typename ResaultType>
+            template<typename ResaultType>
             ResaultType random_between(ResaultType lowest, ResaultType highest) {
                 if (highest <= lowest) {
                     return lowest;
