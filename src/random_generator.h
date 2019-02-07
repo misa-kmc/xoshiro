@@ -4,9 +4,11 @@
 
 #include <limits>
 #include <numeric>
+#include <algorithm>
 #include <ctime>
 #include "random.h"
 
+// copied from https://github.com/atframework/atframe_utils/blob/master/include/random/random_generator.h
 namespace util {
     namespace random {
         /**
@@ -73,6 +75,44 @@ namespace util {
                 }
                 result_type res = (*this)();
                 return static_cast<ResaultType>(res % static_cast<result_type>(highest - lowest)) + lowest;
+            }
+
+        public:
+            // ------------ Support for UniformRandomBitGenerator ------------
+            static inline constexpr result_type min()
+
+            noexcept { return std::numeric_limits<result_type>::min(); }
+
+            static inline constexpr result_type max()
+
+            noexcept { return std::numeric_limits<result_type>::max(); }
+
+            inline result_type g() noexcept { return random(); }
+
+            // ------------ Support for RandomFunc ------------
+            /**
+             * 产生一个随机数
+             * @return 产生的随机数
+             */
+            inline result_type operator()(result_type mod)
+
+            noexcept {
+                if (0 == mod) {
+                    return random();
+                } else {
+                    return random() % mod;
+                }
+            }
+
+            template<typename RandomIt>
+            void shuffle(RandomIt first, RandomIt last) {
+#if defined(__cplusplus) && __cplusplus >= 201103L
+                std::shuffle(first, last, std::move(*this));
+#elif defined(_MSVC_LANG) && _MSVC_LANG >= 201402L
+                std::shuffle(first, last, std::move(*this));
+#else
+                std::random_shuffle(first, last, *this);
+#endif
             }
         };
 
