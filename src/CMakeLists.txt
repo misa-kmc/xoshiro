@@ -46,10 +46,11 @@ install(DIRECTORY "./"
         )
 
 # install export target and config for find_package
-install(EXPORT ${TARGETS_EXPORT_NAME} DESTINATION ${RANDOM_CMAKE_DIR} NAMESPACE random::)
+install(EXPORT ${TARGETS_EXPORT_NAME} DESTINATION ${RANDOM_CMAKE_DIR} NAMESPACE xoshiro::)
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
-        "random-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/random-config.cmake"
+        "xoshiro-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/xoshiro-config.cmake"
         INSTALL_DESTINATION ${RANDOM_CMAKE_DIR}
 )
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/pot-config.cmake" DESTINATION ${RANDOM_CMAKE_DIR})
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/xoshiro-config.cmake" DESTINATION ${RANDOM_CMAKE_DIR})
