@@ -1,10 +1,10 @@
 set(HEADER_FILES
-        random_generator.h
-        random.h
+        xoshiro_gen.h
+        xoshiro.h
         )
 
 set(SOURCE_FILES
-        random.cpp
+        xoshiro.cpp
         )
 
 # set binary path and lib storage path for compiling process.
@@ -23,7 +23,7 @@ target_include_directories(
 )
 
 set(TARGETS_EXPORT_NAME ${RANDOM_LIB_NAME}-targets)
-set(RANDOM_CMAKE_DIR lib/cmake/random)
+set(RANDOM_CMAKE_DIR lib/cmake/xoshiro)
 
 
 ##########################

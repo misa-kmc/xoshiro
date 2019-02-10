@@ -5,10 +5,6 @@ version: 1
 
 args:
 
-replace:
-  - |
-    https://git.gensh.me/HPCer/misa-kmc/ramdom => https://github.com/misa-kmc/random
-
 packages:
   git:
     googletest:

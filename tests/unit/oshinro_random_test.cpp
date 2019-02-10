@@ -2,7 +2,7 @@
 // Created by genshen on 2019-02-07.
 //
 #include <gtest/gtest.h>
-#include <random_generator.h>
+#include <xoshiro_gen.h>
 
 
 TEST(random_test, xoroshiro128_starstar) {
