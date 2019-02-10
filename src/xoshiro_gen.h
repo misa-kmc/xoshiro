@@ -1,12 +1,12 @@
-#ifndef MISA_KMC_RANDOM_GENERATOR_H
-#define MISA_KMC_RANDOM_GENERATOR_H
+#ifndef MISA_KMC_XOSHIRO_H
+#define MISA_KMC_XOSHIRO_H
 
 
 #include <limits>
 #include <numeric>
 #include <algorithm>
 #include <ctime>
-#include "random.h"
+#include "xoshiro.h"
 
 // copied from https://github.com/atframework/atframe_utils/blob/master/include/random/random_generator.h
 namespace util {
@@ -128,4 +128,4 @@ namespace util {
     } // namespace random
 } // namespace util
 
-#endif //MISA_KMC_RANDOM_GENERATOR_H
+#endif //MISA_KMC_XOSHIRO_H

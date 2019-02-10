@@ -1,6 +1,6 @@
 
-#include "random.h"
-#include "random_generator.h"
+#include "xoshiro.h"
+#include "xoshiro_gen.h"
 
 #include <algorithm>
 #include <chrono>
