@@ -28,9 +28,9 @@ namespace util {
 
             random_manager_wrapper(result_type rd_seed) : core_(rd_seed) {}
 
-            inline core_type &get_core() { return core_; }
+            inline core_type &get_core() noexcept { return core_; }
 
-            inline const core_type &get_core() const { return core_; }
+            inline const core_type &get_core() const noexcept { return core_; }
 
             /**
              * 初始化随机数种子
@@ -44,7 +44,7 @@ namespace util {
              * @param [in] first 随机数种子散列值起始位置
              * @param [in] last 随机数种子散列值结束位置
              */
-            template<typename It>
+            template<class It>
             void init_seed(It &first, It last) {
                 core_.init_seed(first, last);
             }
@@ -53,13 +53,13 @@ namespace util {
              * 产生一个随机数
              * @return 产生的随机数
              */
-            result_type random() { return core_(); }
+            result_type random() noexcept { return core_(); }
 
             /**
              * 产生一个随机数
              * @return 产生的随机数
              */
-            result_type operator()() { return random(); }
+            result_type operator()() noexcept { return random(); }
 
             /**
              * 产生一个随机数
