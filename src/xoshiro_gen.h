@@ -53,6 +53,8 @@ namespace util {
              * 初始化随机数种子
              * @param [in] rd_seed 随机数种子
              */
+            void seed(result_type rd_seed) { core_.init_seed(rd_seed); }
+
             void init_seed(result_type rd_seed) { core_.init_seed(rd_seed); }
 
             /**
@@ -61,6 +63,11 @@ namespace util {
              * @param [in] first 随机数种子散列值起始位置
              * @param [in] last 随机数种子散列值结束位置
              */
+            template<class It>
+            void seed(It &first, It last) {
+                core_.init_seed(first, last);
+            }
+
             template<class It>
             void init_seed(It &first, It last) {
                 core_.init_seed(first, last);
@@ -135,17 +142,17 @@ namespace util {
 
         // @see http://xoshiro.di.unimi.it
         // 循环节： 2^128 − 1
-        typedef random_manager_wrapper<core::xoshinro_engine_128 < false>>
-        xoroshiro128_starstar;
+        typedef random_manager_wrapper<core::xoshinro_engine_128<false>>
+                xoroshiro128_starstar;
         // 循环节： 2^128 − 1，少一次旋转，更快一点点
-        typedef random_manager_wrapper<core::xoshinro_engine_128 < true>>
-        xoroshiro128_plus;
+        typedef random_manager_wrapper<core::xoshinro_engine_128<true>>
+                xoroshiro128_plus;
         // 循环节： 2^256 − 1
-        typedef random_manager_wrapper<core::xoshinro_engine_256 < false>>
-        xoshiro256_starstar;
+        typedef random_manager_wrapper<core::xoshinro_engine_256<false>>
+                xoshiro256_starstar;
         // 循环节： 2^256 − 1，少一次旋转，更快一点点
-        typedef random_manager_wrapper<core::xoshinro_engine_256 < true>>
-        xoshiro256_plus;
+        typedef random_manager_wrapper<core::xoshinro_engine_256<true>>
+                xoshiro256_plus;
     } // namespace random
 } // namespace util
 
