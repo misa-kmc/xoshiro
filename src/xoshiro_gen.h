@@ -1,3 +1,17 @@
+/**
+ * @file random_generator.h
+ * @brief 伪随机数生成器
+ *
+ * Licensed under the MIT licenses.
+ * @version 1.0
+ * @author OWenT
+ * @date 2018年09月30日
+ *
+ * @history
+ *
+ */
+// copied from https://github.com/atframework/atframe_utils/blob/master/include/random/random_generator.h
+
 #ifndef MISA_KMC_XOSHIRO_H
 #define MISA_KMC_XOSHIRO_H
 
@@ -8,11 +22,14 @@
 #include <ctime>
 #include "xoshiro.h"
 
-// copied from https://github.com/atframework/atframe_utils/blob/master/include/random/random_generator.h
 namespace util {
     namespace random {
         /**
          * 随机数包装类，用以提供高级功能
+         * 支持 UniformRandomBitGenerator
+         * @see https://en.cppreference.com/w/cpp/named_req/UniformRandomBitGenerator
+         * 支持 std::random_shuffle 里的 RandomFunc
+         * @see https://en.cppreference.com/w/cpp/algorithm/random_shuffle
          */
         template<typename CoreType>
         class random_manager_wrapper {
@@ -118,13 +135,17 @@ namespace util {
 
         // @see http://xoshiro.di.unimi.it
         // 循环节： 2^128 − 1
-        typedef random_manager_wrapper<core::xoshinro_engine_128<false> > xoroshiro128_starstar;
+        typedef random_manager_wrapper<core::xoshinro_engine_128 < false>>
+        xoroshiro128_starstar;
         // 循环节： 2^128 − 1，少一次旋转，更快一点点
-        typedef random_manager_wrapper<core::xoshinro_engine_128<true> > xoroshiro128_plus;
+        typedef random_manager_wrapper<core::xoshinro_engine_128 < true>>
+        xoroshiro128_plus;
         // 循环节： 2^256 − 1
-        typedef random_manager_wrapper<core::xoshinro_engine_256<false> > xoshiro256_starstar;
+        typedef random_manager_wrapper<core::xoshinro_engine_256 < false>>
+        xoshiro256_starstar;
         // 循环节： 2^256 − 1，少一次旋转，更快一点点
-        typedef random_manager_wrapper<core::xoshinro_engine_256<true> > xoshiro256_plus;
+        typedef random_manager_wrapper<core::xoshinro_engine_256 < true>>
+        xoshiro256_plus;
     } // namespace random
 } // namespace util
 
