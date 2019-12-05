@@ -8,8 +8,7 @@
 namespace util {
     namespace random {
         namespace core {
-
-            template <typename UIntType, bool is_plus, int iidx, int n1, int n2>
+            template<class UIntType, bool is_plus, int iidx, int n1, int n2>
             class xoshinro_engine {
             public:
                 typedef UIntType    result_type;
@@ -23,15 +22,15 @@ namespace util {
                     return (x << k) | (x >> ((sizeof(result_type) * 8) - static_cast<result_type>(k)));
                 }
 
-                template <typename, bool>
+                template<class, bool>
                 struct next_init;
 
-                template <typename T>
+                template<class T>
                 struct next_init<T, true> {
                     static inline result_type call(seed_type &s) { return s[0] + s[3]; }
                 };
 
-                template <typename T>
+                template<class T>
                 struct next_init<T, false> {
                     static inline result_type call(seed_type &s) { return rotl(s[iidx] * 5, 7) * 9; }
                 };
@@ -102,7 +101,7 @@ namespace util {
                     }
                 }
 
-                template <typename It>
+                template<class It>
                 void init_seed(It &first, It last) {
                     It begin = first;
                     for (int i = 0; i < 4; ++i) {
