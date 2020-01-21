@@ -22,6 +22,10 @@ target_include_directories(
         $<INSTALL_INTERFACE:include>
 )
 
+
+# lib alias to makes it possible to always use the namespace version consistently
+add_library(xoshiro::${RANDOM_LIB_NAME} ALIAS ${RANDOM_LIB_NAME})
+
 set(TARGETS_EXPORT_NAME ${RANDOM_LIB_NAME}-targets)
 set(RANDOM_CMAKE_DIR lib/cmake/xoshiro)
 
