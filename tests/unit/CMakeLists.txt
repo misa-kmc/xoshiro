@@ -11,9 +11,17 @@ add_executable(${RANDOM_UINT_TEST_NAME} ${TEST_SOURCE_FILES})
 
 
 # Extra linking for the project.
-target_link_libraries(${RANDOM_UINT_TEST_NAME}
-        PRIVATE GTest::gtest GTest::gtest_main ${RANDOM_LIB_NAME} ${RANDOM_EXTRA_LIBS}
-        )
+if (TARGET GTest::gtest AND TARGET GTest::gtest_main)
+    # googletest is added by `find_package(GTest)`
+    target_link_libraries(${RANDOM_UINT_TEST_NAME}
+            PRIVATE GTest::gtest GTest::gtest_main ${RANDOM_LIB_NAME} ${RANDOM_EXTRA_LIBS}
+            )
+else ()
+    # googletest is added by `add_subdirectory`
+    target_link_libraries(${RANDOM_UINT_TEST_NAME}
+            PRIVATE gtest gtest_main ${RANDOM_LIB_NAME} ${RANDOM_EXTRA_LIBS}
+            )
+endif ()
 
 add_test(NAME ${RANDOM_UINT_TEST_NAME} COMMAND ${RANDOM_UINT_TEST_NAME})
 
